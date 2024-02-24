@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name" translatable="false">MyBarCode</string>
+    <string name="welcome_message">Welcome User</string>
+    <string name="create_code_button">Create code</string>
+    <string name="read_code_button">Scan code</string>
+    <string name="saved_codes_button">Saved codes</string>
+</resources>

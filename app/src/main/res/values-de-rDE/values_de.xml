@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="welcome_message">Wilkommen Nutzer</string>
+    <string name="create_code_button">Code erstellen</string>
+    <string name="read_code_button">Code scannen</string>
+    <string name="saved_codes_button">Gespeicherte Codes</string>
+</resources>
