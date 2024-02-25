@@ -3,5 +3,8 @@
     <string name="welcome_message">Welcome User</string>
     <string name="create_code_button">Create code</string>
     <string name="read_code_button">Scan code</string>
-    <string name="saved_codes_button">Saved codes</string>
+    <string name="exporting_codes_button">Exported codes</string>
+    <string name="scan_new_code_button">Scan code</string>
+    <string name="return_button">Return</string>
+    <string name="tell_information_button">Result</string>
 </resources>
