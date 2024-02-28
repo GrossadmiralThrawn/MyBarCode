@@ -8,8 +8,10 @@
 
     <TextView
         android:id="@+id/welcomeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="2sp"
         android:text="@string/welcome_message"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,7 +22,9 @@
     <Button
         android:id="@+id/createCodeButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
+        android:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="2sp"
         android:text="@string/create_code_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +36,9 @@
     <Button
         android:id="@+id/scanCodeButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
+        android:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="2sp"
         android:text="@string/read_code_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +50,9 @@
     <Button
         android:id="@+id/exportedCodes"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
+        android:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="2sp"
         android:text="@string/exporting_codes_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

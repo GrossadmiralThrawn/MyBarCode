@@ -6,5 +6,5 @@
     <string name="exporting_codes_button">Exportierte Codes</string>
     <string name="scan_new_code_button">Scanne Code</string>
     <string name="return_button">Zurück</string>
-    <string name="tell_information_button">Ergebnis</string>
+    <string name="tell_information_text_view">Ergebnis</string>
 </resources>
