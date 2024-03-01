@@ -1,4 +1,4 @@
-package com.example.mybarcode.memoryinteraction
+package com.example.mybarcode.hardwareInteraction.memoryinteraction
 
 interface IExport {
     public fun connect(): Boolean

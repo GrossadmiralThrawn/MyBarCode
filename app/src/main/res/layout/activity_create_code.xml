@@ -7,12 +7,12 @@
     tools:context=".CreateCodeActivity">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:autoSizeStepGranularity="2sp"
+        android:id="@+id/requestInputTextView"
+        android:layout_width="400dp"
+        android:layout_height="80dp"
         android:autoSizeTextType="uniform"
-        android:text="TextView"
+        android:text="@string/type_in_request_text_view"
+        app:autoSizeStepGranularity="2sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -22,42 +22,73 @@
 
     <Button
         android:id="@+id/returnFromCreateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:autoSizeStepGranularity="2sp"
+        android:layout_width="167dp"
+        android:layout_height="65dp"
         android:autoSizeTextType="uniform"
         android:text="@string/return_button"
+        app:autoSizeStepGranularity="2sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.872" />
+        app:layout_constraintVertical_bias="0.932" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:autoSizeStepGranularity="2sp"
+        android:id="@+id/createBarCodeButton"
+        android:layout_width="175dp"
+        android:layout_height="65dp"
         android:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="2sp"
         android:text="@string/create_bar_code_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.876"
+        app:layout_constraintHorizontal_bias="0.934"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.751" />
+        app:layout_constraintVertical_bias="0.788" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:autoSizeStepGranularity="2sp"
+        android:id="@+id/createQRCodeButton"
+        android:layout_width="175dp"
+        android:layout_height="65dp"
         android:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="2sp"
         android:text="@string/create_qr_code_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.137"
+        app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.751" />
+        app:layout_constraintVertical_bias="0.788" />
+
+    <EditText
+        android:id="@+id/toCodeEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoSizeTextType="uniform"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/type_in_request_text_view"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textColorHint="#546E7A"
+        app:autoSizeStepGranularity="2sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/badInputTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.419" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

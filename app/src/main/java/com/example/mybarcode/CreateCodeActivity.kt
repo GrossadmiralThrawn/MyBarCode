@@ -1,11 +1,26 @@
 package com.example.mybarcode
 
-import androidx.appcompat.app.AppCompatActivity
+
+
+
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
+
+
 
 class CreateCodeActivity : AppCompatActivity() {
-    private lateinit var returnButton: Button
+    private lateinit var returnButton:        Button
+    private lateinit var createQRCodeButton:  Button
+    private lateinit var createBarCodeButton: Button
+    private lateinit var inputEditText:       EditText
+    private lateinit var badInputTextView:    TextView
+    private lateinit var codeText:            String
+    private lateinit var showCodeIntent:      Intent
 
 
 
@@ -13,11 +28,50 @@ class CreateCodeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_code)
-        returnButton     = findViewById(R.id.returnFromCreateButton)
+        returnButton         = findViewById(R.id.returnFromCreateButton)
+        createQRCodeButton   = findViewById(R.id.createQRCodeButton)
+        createBarCodeButton  = findViewById(R.id.createBarCodeButton)
+        inputEditText        = findViewById(R.id.toCodeEditText)
+        badInputTextView     = findViewById(R.id.badInputTextView)
+        showCodeIntent       = Intent(this, ShowCodeActivity::class.java)
+
+
+
+        createQRCodeButton.setOnClickListener {
+            if (getInputText("QR")) {
+                startActivity(showCodeIntent)
+                finish()
+            }
+            else {
+                badInputTextView.text = getText(R.string.bad_input_textview)
+            }
+        }
+
+
+        createBarCodeButton.setOnClickListener {
+            if (getInputText("Bar")) {
+                startActivity(showCodeIntent)
+                finish()
+            }
+            else
+            {
+                badInputTextView.text = getText(R.string.bad_input_textview)
+            }
+        }
 
 
         returnButton.setOnClickListener {
             finish()
         }
+    }
+
+
+
+
+    private fun getInputText(codeType: String): Boolean {
+        codeText = inputEditText.text.toString()
+        showCodeIntent.putExtra("codeText", codeText)
+        showCodeIntent.putExtra("codeType", codeType)
+        return codeText != ""
     }
 }

@@ -7,7 +7,10 @@
     <string name="scan_new_code_button">Scanne Code</string>
     <string name="create_qr_code_button">QR-Code erstellen</string>
     <string name="create_bar_code_button">Barcode erstellen</string>
-    <string name="type_in_request_text_view">Bite Daten Eingeben.</string>
+    <string name="type_in_request_text_view">Bitte Daten Eingeben.</string>
     <string name="return_button">Zurück</string>
     <string name="tell_information_text_view">Ergebnis</string>
+    <string name="share_button">Teilen</string>
+    <string name="export_button">Speichern</string>
+    <string name="bad_input_textview">Eingabe ist zu kurz</string>
 </resources>

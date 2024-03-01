@@ -10,4 +10,7 @@
     <string name="scan_new_code_button">Scan code</string>
     <string name="return_button">Return</string>
     <string name="tell_information_text_view">Result</string>
+    <string name="share_button">Share</string>
+    <string name="export_button">Save</string>
+    <string name="bad_input_textview">Your input is to short</string>
 </resources>
