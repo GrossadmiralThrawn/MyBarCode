@@ -38,8 +38,10 @@ class CreateCodeActivity : AppCompatActivity() {
 
 
         createQRCodeButton.setOnClickListener {
-            if (getInputText("QR")) {
+            if (getInputText()) {
                 startActivity(showCodeIntent)
+                showCodeIntent.putExtra("codeText", codeText)
+                showCodeIntent.putExtra("codeType", "QR")
                 finish()
             }
             else {
@@ -49,8 +51,10 @@ class CreateCodeActivity : AppCompatActivity() {
 
 
         createBarCodeButton.setOnClickListener {
-            if (getInputText("Bar")) {
+            if (getInputText()) {
                 startActivity(showCodeIntent)
+                showCodeIntent.putExtra("codeText", codeText)
+                showCodeIntent.putExtra("codeType", "Bar")
                 finish()
             }
             else
@@ -68,10 +72,8 @@ class CreateCodeActivity : AppCompatActivity() {
 
 
 
-    private fun getInputText(codeType: String): Boolean {
+    private fun getInputText(): Boolean {
         codeText = inputEditText.text.toString()
-        showCodeIntent.putExtra("codeText", codeText)
-        showCodeIntent.putExtra("codeType", codeType)
         return codeText != ""
     }
 }
