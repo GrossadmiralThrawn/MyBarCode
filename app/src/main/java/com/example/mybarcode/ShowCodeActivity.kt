@@ -1,7 +1,9 @@
 package com.example.mybarcode
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,7 +13,11 @@ import com.google.zxing.WriterException
 import com.journeyapps.barcodescanner.BarcodeEncoder
 
 class ShowCodeActivity : AppCompatActivity() {
-    private lateinit var returnButton: Button
+    private lateinit var returnButton:      Button
+    private lateinit var saveButton:        Button
+    private lateinit var shareButton:       Button
+    private lateinit var receivedIntent:    Intent
+    private lateinit var showCodeImageView: ImageView
 
 
 
@@ -25,7 +31,25 @@ class ShowCodeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        returnButton = findViewById(R.id.returnToPreviousButton)
+        receivedIntent    = intent
+        returnButton      = findViewById(R.id.returnToPreviousButton)
+        saveButton        = findViewById(R.id.saveButton)
+        shareButton       = findViewById(R.id.shareButton)
+        showCodeImageView = findViewById(R.id.showCodeImageView)
+        val codeText      = receivedIntent.getStringExtra("codeText")
+
+
+
+        when (receivedIntent.getStringExtra("codeType")) //Kotlins switch-case-Version
+        {
+            "QR" -> generateQRCode(codeText!!) //Lambdafunktionen, inklusive Fehlerabfrage, falls übergebene Daten == null
+            "Bar" -> generateBarcode(codeText!!)
+        }
+
+
+        returnButton.setOnClickListener {
+            finish()
+        }
     }
 
 
@@ -34,7 +58,7 @@ class ShowCodeActivity : AppCompatActivity() {
         val barcodeEncoder = BarcodeEncoder()
         try {
             val bitmap = barcodeEncoder.encodeBitmap(data, BarcodeFormat.QR_CODE, 400, 400)
-            // Hier kannst du das generierte Bild verwenden, z.B. in einer ImageView anzeigen
+            showCodeImageView.setImageBitmap(bitmap)
         } catch (e: WriterException) {
             e.printStackTrace()
         }
@@ -47,7 +71,7 @@ class ShowCodeActivity : AppCompatActivity() {
         val barcodeEncoder = BarcodeEncoder()
         try {
             val bitmap = barcodeEncoder.encodeBitmap(data, BarcodeFormat.CODE_128, 400, 200)
-            // Hier kannst du das generierte Bild verwenden, z.B. in einer ImageView anzeigen
+            showCodeImageView.setImageBitmap(bitmap)
         } catch (e: WriterException) {
             e.printStackTrace()
         }

@@ -39,9 +39,9 @@ class CreateCodeActivity : AppCompatActivity() {
 
         createQRCodeButton.setOnClickListener {
             if (getInputText()) {
-                startActivity(showCodeIntent)
                 showCodeIntent.putExtra("codeText", codeText)
                 showCodeIntent.putExtra("codeType", "QR")
+                startActivity(showCodeIntent)
                 finish()
             }
             else {
@@ -52,9 +52,9 @@ class CreateCodeActivity : AppCompatActivity() {
 
         createBarCodeButton.setOnClickListener {
             if (getInputText()) {
-                startActivity(showCodeIntent)
                 showCodeIntent.putExtra("codeText", codeText)
                 showCodeIntent.putExtra("codeType", "Bar")
+                startActivity(showCodeIntent)
                 finish()
             }
             else

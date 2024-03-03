@@ -55,6 +55,7 @@ class ScanCodeActivity : AppCompatActivity() {
         val scanOptions = ScanOptions()
         scanOptions.setPrompt("Volume up to flash on.")
         scanOptions.setOrientationLocked(true)
+        scanOptions.setBeepEnabled(false)
         scanOptions.setCaptureActivity(CaptureAct::class.java)
         barLauncher.launch(scanOptions)
     }
