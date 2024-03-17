@@ -5,6 +5,8 @@ package com.example.mybarcode
 
 
 import android.app.AlertDialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -36,8 +38,8 @@ class ScanCodeActivity : AppCompatActivity() {
 
 
         resultTextView = findViewById(R.id.scannedResultTextView)
-        backButton     = findViewById(R.id.returnButton)
-        scanButton     = findViewById(R.id.scanNewCodeButton)
+        backButton = findViewById(R.id.returnButton)
+        scanButton = findViewById(R.id.scanNewCodeButton)
 
 
 
@@ -45,18 +47,30 @@ class ScanCodeActivity : AppCompatActivity() {
             finish()
         }
 
+
+        fun scanCode() {
+            val scanOptions = ScanOptions()
+            scanOptions.setPrompt("Volume up to flash on.")
+            scanOptions.setOrientationLocked(true)
+            scanOptions.setBeepEnabled(false)
+            scanOptions.setCaptureActivity(CaptureAct::class.java)
+            barLauncher.launch(scanOptions)
+        }
+
         scanButton.setOnClickListener {
             scanCode()
+            // AutoLink für Links aktivieren
+            resultTextView.autoLinkMask = android.text.util.Linkify.WEB_URLS
+            resultTextView.setOnClickListener { view ->
+                // Überprüfen, ob das geklickte Text ein Link ist
+                val textView = view as TextView
+                val text = textView.text.toString()
+                if (android.util.Patterns.WEB_URL.matcher(text).matches()) {
+                    // Wenn ja, öffne den Link im Browser
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(text))
+                    startActivity(intent)
+                }
+            }
         }
-    }
-
-
-    private fun scanCode() {
-        val scanOptions = ScanOptions()
-        scanOptions.setPrompt("Volume up to flash on.")
-        scanOptions.setOrientationLocked(true)
-        scanOptions.setBeepEnabled(false)
-        scanOptions.setCaptureActivity(CaptureAct::class.java)
-        barLauncher.launch(scanOptions)
     }
 }
