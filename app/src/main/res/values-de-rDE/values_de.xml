@@ -13,4 +13,9 @@
     <string name="share_button">Teilen</string>
     <string name="export_button">Speichern</string>
     <string name="bad_input_textview">Eingabe ist zu kurz</string>
+    <string name="save_location_local">Lokal speichern</string>
+    <string name="save_successfully">Speichern erfolgreich.</string>
+    <string name="save_unsuccessfully">Speichern fehlgeschlagen.</string>
+    <string name="quit">Abbrechen</string>
+    <string name="select_save_option">Speichern Option wählen</string>
 </resources>

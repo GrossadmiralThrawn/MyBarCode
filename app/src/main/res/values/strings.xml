@@ -13,4 +13,9 @@
     <string name="share_button">Share</string>
     <string name="export_button">Save</string>
     <string name="bad_input_textview">Your input is to short</string>
+    <string name="save_location_local">Save local</string>
+    <string name="save_successfully">Saved successfully.</string>
+    <string name="save_unsuccessfully">Failed to save.</string>
+    <string name="quit">Quit</string>
+    <string name="select_save_option">Select save option.</string>
 </resources>
