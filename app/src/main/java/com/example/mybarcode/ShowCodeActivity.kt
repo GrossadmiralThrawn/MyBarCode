@@ -1,6 +1,10 @@
 package com.example.mybarcode
 
+
+
+
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -8,8 +12,11 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.mybarcode.export.IExport
+import com.example.mybarcode.export.SaveLocal
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.journeyapps.barcodescanner.BarcodeEncoder
@@ -23,6 +30,8 @@ class ShowCodeActivity : AppCompatActivity() {
     private lateinit var shareButton:       Button
     private lateinit var receivedIntent:    Intent
     private lateinit var showCodeImageView: ImageView
+    private lateinit var saveCode:          IExport
+    private          var creationSucceed:   Boolean    = true
 
 
 
@@ -60,7 +69,7 @@ class ShowCodeActivity : AppCompatActivity() {
                 .setTitle(getString(R.string.select_save_option))
                 .setItems(options) { _, which ->
                     when (which) {
-                        0 -> saveLocally()
+                        0 -> saveLocally(showCodeImageView.drawable?.toBitmap())
                     }
                 }.setNegativeButton(getString(R.string.quit)) { dialog, _ ->
                     dialog.dismiss()
@@ -84,8 +93,36 @@ class ShowCodeActivity : AppCompatActivity() {
 
 
 
-    private fun saveLocally() {
+    private fun saveLocally(data: Bitmap?) {
+        data?.let {
+            saveCode = SaveLocal(it) //Wenn Daten erhalten, dann Übergabe an Funktion
+            saveCode(data, saveCode)
+            Toast.makeText(this, getString(R.string.save_successfully), Toast.LENGTH_SHORT).show()
+        } ?: run {
+            Toast.makeText(this, "Fehler beim Abrufen der Bitmap", Toast.LENGTH_SHORT).show()
+        }
         Toast.makeText(this, getString(R.string.save_successfully), Toast.LENGTH_SHORT).show()
+    }
+
+
+
+
+    private fun saveCode(data: Bitmap, storeObject: IExport): Boolean {
+        storeObject.setData(data)
+
+
+
+        if (storeObject.checkAvailability())
+        {
+            if(storeObject.export())
+            {
+                return true
+            }
+        }
+
+
+
+        return false
     }
 
 
@@ -96,6 +133,7 @@ class ShowCodeActivity : AppCompatActivity() {
         try {
             val bitmap = barcodeEncoder.encodeBitmap(data, BarcodeFormat.QR_CODE, 400, 400)
             showCodeImageView.setImageBitmap(bitmap)
+            creationSucceed = true
         } catch (e: WriterException) {
             e.printStackTrace()
         }
@@ -109,6 +147,7 @@ class ShowCodeActivity : AppCompatActivity() {
         try {
             val bitmap = barcodeEncoder.encodeBitmap(data, BarcodeFormat.CODE_128, 400, 200)
             showCodeImageView.setImageBitmap(bitmap)
+            creationSucceed = true
         } catch (e: WriterException) {
             e.printStackTrace()
         }
