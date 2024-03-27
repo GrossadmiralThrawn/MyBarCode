@@ -49,10 +49,14 @@ class SaveLocal(private var data: Bitmap) : IExport {
 
 
 
-    override fun export(): Boolean {
+    override fun export(information: String?): Boolean {
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val folderName = "MyBarcodeData"
-        val fileName = "barcode_$timeStamp.jpg"
+        val fileName = if (!information.isNullOrEmpty()) {
+            "${sanitizeFileName(information)}_$timeStamp.jpg"
+        } else {
+            "barcode_$timeStamp.jpg"
+        }
         val folder = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), folderName)
 
         if (!folder.exists()) {
@@ -70,5 +74,10 @@ class SaveLocal(private var data: Bitmap) : IExport {
             e.printStackTrace()
             false
         }
+    }
+
+    private fun sanitizeFileName(fileName: String): String {
+        // Replace invalid characters in file name with underscores
+        return fileName.replace("[^a-zA-Z0-9.-]".toRegex(), "_")
     }
 }

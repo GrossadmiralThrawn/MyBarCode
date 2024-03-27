@@ -69,7 +69,7 @@ class ShowCodeActivity : AppCompatActivity() {
                 .setTitle(getString(R.string.select_save_option))
                 .setItems(options) { _, which ->
                     when (which) {
-                        0 -> saveLocally(showCodeImageView.drawable?.toBitmap())
+                        0 -> saveLocally(showCodeImageView.drawable?.toBitmap(), codeText)
                     }
                 }.setNegativeButton(getString(R.string.quit)) { dialog, _ ->
                     dialog.dismiss()
@@ -93,10 +93,10 @@ class ShowCodeActivity : AppCompatActivity() {
 
 
 
-    private fun saveLocally(data: Bitmap?) {
+    private fun saveLocally(data: Bitmap?, information: String?) {
         data?.let {
             saveCode = SaveLocal(it) //Wenn Daten erhalten, dann Übergabe an Funktion
-            saveCode(data, saveCode)
+            saveCode(data, saveCode, information)
             Toast.makeText(this, getString(R.string.save_successfully), Toast.LENGTH_SHORT).show()
         } ?: run {
             Toast.makeText(this, "Fehler beim Abrufen der Bitmap", Toast.LENGTH_SHORT).show()
@@ -107,14 +107,14 @@ class ShowCodeActivity : AppCompatActivity() {
 
 
 
-    private fun saveCode(data: Bitmap, storeObject: IExport): Boolean {
+    private fun saveCode(data: Bitmap, storeObject: IExport, information: String?): Boolean {
         storeObject.setData(data)
 
 
 
         if (storeObject.checkAvailability())
         {
-            if(storeObject.export())
+            if(storeObject.export(information))
             {
                 return true
             }
