@@ -19,6 +19,12 @@
         android:theme="@style/Theme.MyBarCode"
         tools:targetApi="31">
         <activity
+            android:name=".ExportedCodesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GeneratedCodesActivity"
+            android:exported="false" />
+        <activity
             android:name=".ShowCodeActivity"
             android:exported="false" />
         <activity

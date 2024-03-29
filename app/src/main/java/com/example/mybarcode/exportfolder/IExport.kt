@@ -1,6 +1,12 @@
-package com.example.mybarcode.export
+package com.example.mybarcode.exportfolder
+
+
+
 
 import android.graphics.Bitmap
+
+
+
 
 interface IExport {
     fun setData(newData: Bitmap)

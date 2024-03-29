@@ -1,4 +1,4 @@
-package com.example.mybarcode.export
+package com.example.mybarcode.exportfolder
 
 
 
@@ -14,7 +14,7 @@ import java.util.Date
 import java.util.Locale
 
 
-class SaveLocal(private var data: Bitmap) : IExport {
+class ImportLocal(private var data: Bitmap) : IExport {
     override fun setData(newData: Bitmap) {
         data = newData
     }

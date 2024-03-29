@@ -18,4 +18,5 @@
     <string name="save_unsuccessfully">Failed to save.</string>
     <string name="quit">Quit</string>
     <string name="select_save_option">Select save option.</string>
+    <string name="local_location">Local data</string>
 </resources>

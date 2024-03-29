@@ -6,15 +6,16 @@ package com.example.mybarcode
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Button
-
-
+import android.widget.PopupMenu
+import com.example.mybarcode.importfolder.ImportLocal
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var createCodeButton: Button
     private lateinit var scanCodeButton:   Button
-    private lateinit var exportingCodes:   Button
+    private lateinit var exportedCodes:    Button
 
 
 
@@ -24,13 +25,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         createCodeButton = findViewById(R.id.createCodeButton)
-        scanCodeButton   = findViewById(R.id.scanCodeButton)
-        exportingCodes   = findViewById(R.id.exportedCodes)
+        scanCodeButton = findViewById(R.id.scanCodeButton)
+        exportedCodes = findViewById(R.id.exportedCodes)
 
 
-
-        val createIntent    = Intent(this, CreateCodeActivity::class.java)
-        val scanIntent      = Intent(this, ScanCodeActivity::class.java)
+        val createIntent = Intent(this, CreateCodeActivity::class.java)
+        val scanIntent = Intent(this, ScanCodeActivity::class.java)
         val exportingIntent = Intent(this, CodeExportingActivity::class.java)
 
 
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        exportingCodes.setOnClickListener {
+        exportedCodes.setOnClickListener {
             startActivity(exportingIntent)
         }
     }
