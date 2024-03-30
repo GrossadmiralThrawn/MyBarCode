@@ -9,7 +9,7 @@ import android.graphics.Bitmap
 
 
 interface IImport {
-    fun getData(): Bitmap
+    fun getData(): List<String>
     fun checkAvailability(): Boolean
     fun importCode(): Bitmap
 }

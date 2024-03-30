@@ -14,7 +14,7 @@ import java.util.Date
 import java.util.Locale
 
 
-class ImportLocal(private var data: Bitmap) : IExport {
+class ExportLocal(private var data: Bitmap) : IExport {
     override fun setData(newData: Bitmap) {
         data = newData
     }
