@@ -1,20 +1,11 @@
 package com.example.mybarcode.importfolder
 
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Environment
 import java.io.File
 
 class ImportLocal: IImport {
-    private fun extractCodeFromFile(file: File): String? {
-        // Here, you need to implement the logic to extract the code from the image file.
-        // For simplicity, let's assume the file name contains the code.
-        // You may need a more sophisticated approach based on your actual scenario.
-        return file.nameWithoutExtension // Just return the file name without extension as code
-    }
-
-
-
-
     override fun getData(): List<String> {
         val folderName = "MyBarcodeData"
         val folder = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), folderName)
@@ -25,10 +16,8 @@ class ImportLocal: IImport {
             files?.forEach { file ->
                 // Check if it's a valid image file (you may want to refine this check)
                 if (file.isFile && file.extension.equals("jpg", ignoreCase = true)) {
-                    val code = extractCodeFromFile(file)
-                    code?.let {
-                        codeList.add(it)
-                    }
+                    val code = file.nameWithoutExtension // Extract filename without extension
+                    codeList.add(code)
                 }
             }
         }
@@ -36,11 +25,21 @@ class ImportLocal: IImport {
         return codeList
     }
 
+
+
     override fun checkAvailability(): Boolean {
-        TODO("Not yet implemented")
+        val folderName = "MyBarcodeData"
+        val folder = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), folderName)
+        return folder.exists() && folder.isDirectory
     }
 
-    override fun importCode(): Bitmap {
-        TODO("Not yet implemented")
+    override fun importCode(fileName: String): Bitmap? {
+        val folderName = "MyBarcodeData"
+        val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "$folderName/$fileName.jpg")
+        return if (file.exists()) {
+            BitmapFactory.decodeFile(file.absolutePath)
+        } else {
+            null
+        }
     }
 }

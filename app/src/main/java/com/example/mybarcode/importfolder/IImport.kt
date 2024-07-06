@@ -11,5 +11,5 @@ import android.graphics.Bitmap
 interface IImport {
     fun getData(): List<String>
     fun checkAvailability(): Boolean
-    fun importCode(): Bitmap
+    fun importCode(fileName: String): Bitmap?
 }
