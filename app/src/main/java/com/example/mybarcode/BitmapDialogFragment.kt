@@ -31,7 +31,7 @@ class BitmapDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val imageView = view.findViewById<ImageView>(R.id.imageView)
-        val bitmap = arguments?.getParcelable<Bitmap>(ARG_BITMAP)
+        val bitmap = arguments?.getParcelable(ARG_BITMAP, Bitmap::class.java)
         imageView.setImageBitmap(bitmap)
     }
 }
