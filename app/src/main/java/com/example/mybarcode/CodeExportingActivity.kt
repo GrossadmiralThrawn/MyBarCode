@@ -13,9 +13,14 @@ import com.example.mybarcode.importfolder.IImport
 import com.example.mybarcode.importfolder.ImportLocal
 
 
+
+
 class CodeExportingActivity : AppCompatActivity() {
     private lateinit var spinner: Spinner
     private lateinit var listView: ListView
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +41,9 @@ class CodeExportingActivity : AppCompatActivity() {
             }
         }
     }
+
+
+
 
     private fun availableCodes(importData: IImport) {
         val codeList = importData.getData()
