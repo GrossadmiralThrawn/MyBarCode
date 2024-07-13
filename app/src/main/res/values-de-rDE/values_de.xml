@@ -19,4 +19,7 @@
     <string name="quit">Abbrechen</string>
     <string name="select_save_option">Speichern Option wählen</string>
     <string name="local_location">Lokale Daten</string>
+    <string name="hello_blank_fragment">Hallo blank fragment</string>
+    <string name="image_not_found">Bild konnte nicht gefunden werden.</string>
+
 </resources>

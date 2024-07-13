@@ -21,7 +21,6 @@ class CodeExportingActivity : AppCompatActivity() {
 
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_code_exporting)
@@ -57,7 +56,7 @@ class CodeExportingActivity : AppCompatActivity() {
                 val dialog = BitmapDialogFragment.newInstance(bitmap)
                 dialog.show(supportFragmentManager, "BitmapDialogFragment")
             } else {
-                Toast.makeText(this, "Image not found", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.image_not_found), Toast.LENGTH_SHORT).show()
             }
         }
     }
