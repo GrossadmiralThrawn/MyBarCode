@@ -41,6 +41,9 @@ class ExportLocal(private var data: Bitmap) : IExport {
 
 
 
+    /**
+     * @return a boolean which says if the source is available. In this case it checks if the phone has enough capacities to store the image.
+     */
     override fun checkAvailability(): Boolean {
         return getDataSize() < getAvailableInternalMemorySizeSpace()
     }
