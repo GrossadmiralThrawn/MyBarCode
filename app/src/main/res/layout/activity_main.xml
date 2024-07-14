@@ -8,11 +8,11 @@
 
     <TextView
         android:id="@+id/welcomeTextView"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:autoSizeStepGranularity="2sp"
+        android:layout_width="391dp"
+        android:layout_height="94dp"
         android:autoSizeTextType="uniform"
         android:text="@string/welcome_message"
+        app:autoSizeStepGranularity="2sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/requestInputTextView"
-        android:layout_width="400dp"
-        android:layout_height="80dp"
+        android:layout_width="381dp"
+        android:layout_height="83dp"
         android:autoSizeTextType="uniform"
         android:text="@string/type_in_request_text_view"
         app:autoSizeStepGranularity="2sp"
@@ -22,8 +22,8 @@
 
     <Button
         android:id="@+id/returnFromCreateButton"
-        android:layout_width="196dp"
-        android:layout_height="69dp"
+        android:layout_width="175dp"
+        android:layout_height="65dp"
         android:autoSizeTextType="uniform"
         android:text="@string/return_button"
         app:autoSizeStepGranularity="2sp"
@@ -63,8 +63,8 @@
 
     <EditText
         android:id="@+id/toCodeEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="299dp"
+        android:layout_height="69dp"
         android:autoSizeTextType="uniform"
         android:autofillHints=""
         android:ems="10"
@@ -85,9 +85,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.419" />
+        app:layout_constraintVertical_bias="0.321" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
