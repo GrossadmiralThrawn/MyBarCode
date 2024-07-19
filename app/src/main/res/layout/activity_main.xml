@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/welcomeTextView"
-        android:layout_width="391dp"
-        android:layout_height="94dp"
+        android:layout_width="369dp"
+        android:layout_height="96dp"
         android:autoSizeTextType="uniform"
         android:text="@string/welcome_message"
         app:autoSizeStepGranularity="2sp"
