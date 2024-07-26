@@ -1,4 +1,4 @@
-package com.example.mybarcode
+package com.mybarcode
 
 import com.journeyapps.barcodescanner.CaptureActivity
 

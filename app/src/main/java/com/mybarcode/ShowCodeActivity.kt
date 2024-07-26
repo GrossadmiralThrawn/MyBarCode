@@ -1,10 +1,11 @@
-package com.example.mybarcode
+package com.mybarcode
 
 
 
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -12,16 +13,18 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.mybarcode.exportfolder.IExport
-import com.example.mybarcode.exportfolder.ExportLocal
+import com.example.mybarcode.R
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.journeyapps.barcodescanner.BarcodeEncoder
-
-
+import com.mybarcode.exportfolder.ExportLocal
+import com.mybarcode.exportfolder.IExport
+import java.io.File
+import java.io.FileOutputStream
 
 
 class ShowCodeActivity : AppCompatActivity() {
@@ -30,7 +33,7 @@ class ShowCodeActivity : AppCompatActivity() {
     private lateinit var shareButton:       Button
     private lateinit var receivedIntent:    Intent
     private lateinit var showCodeImageView: ImageView
-    private lateinit var saveCode:          IExport
+    private lateinit var saveCode: IExport
     private          var creationSucceed:   Boolean    = true
 
 
@@ -78,16 +81,15 @@ class ShowCodeActivity : AppCompatActivity() {
 
 
 
+        shareButton.setOnClickListener{
+            shareImage()
+        }
+
+
 
         returnButton.setOnClickListener {
             finish()
         }
-    }
-
-
-
-    private fun saveToDatabase() {
-        Toast.makeText(this, getString(R.string.save_successfully), Toast.LENGTH_SHORT).show()
     }
 
 
@@ -150,6 +152,47 @@ class ShowCodeActivity : AppCompatActivity() {
             creationSucceed = true
         } catch (e: WriterException) {
             e.printStackTrace()
+        }
+    }
+
+
+
+
+    private fun shareImage() {
+        val bitmap = showCodeImageView.drawable?.toBitmap()
+
+        if (bitmap != null) {
+            try {
+                // Save bitmap to cache directory
+                val cachePath = File(cacheDir, "images")
+                cachePath.mkdirs() // Create directory if not exists
+                val file = File(cachePath, "shared_image.png")
+                val fileOutputStream = FileOutputStream(file)
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)
+                fileOutputStream.close()
+
+                // Get file URI
+                val fileUri: Uri = FileProvider.getUriForFile(
+                    this,
+                    "$packageName.fileprovider",
+                    file
+                )
+
+                // Create share intent
+                val shareIntent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_STREAM, fileUri)
+                    type = "image/*"
+                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION) // Grant permission to read the URI
+                }
+
+                // Start share activity
+                startActivity(Intent.createChooser(shareIntent, getString(R.string.share_via)))
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        } else {
+            return
         }
     }
 }

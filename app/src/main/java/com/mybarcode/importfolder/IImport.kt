@@ -1,4 +1,4 @@
-package com.example.mybarcode.importfolder
+package com.mybarcode.importfolder
 
 
 
@@ -12,4 +12,5 @@ interface IImport {
     fun getData(): List<String>
     fun checkAvailability(): Boolean
     fun importCode(fileName: String): Bitmap?
+    fun deleteCode(code: String): Boolean
 }

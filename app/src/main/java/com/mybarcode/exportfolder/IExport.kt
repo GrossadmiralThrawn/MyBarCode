@@ -1,4 +1,4 @@
-package com.example.mybarcode.exportfolder
+package com.mybarcode.exportfolder
 
 
 

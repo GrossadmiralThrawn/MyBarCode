@@ -1,12 +1,13 @@
-package com.example.mybarcode
+package com.mybarcode
 
 
 
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import com.example.mybarcode.R
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         val createIntent = Intent(this, CreateCodeActivity::class.java)
         val scanIntent = Intent(this, ScanCodeActivity::class.java)
-        val exportedIntent = Intent(this, CodeExportingActivity::class.java)
+        val exportedIntent = Intent(this, SavedCodesActivity::class.java)
 
 
 

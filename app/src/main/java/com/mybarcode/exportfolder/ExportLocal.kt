@@ -1,4 +1,4 @@
-package com.example.mybarcode.exportfolder
+package com.mybarcode.exportfolder
 
 
 
@@ -19,16 +19,9 @@ class ExportLocal(private var data: Bitmap) : IExport {
         data = newData
     }
 
-
-
-
     private fun getDataSize(): Long {
-        return data.getByteCount().toLong()
+        return data.byteCount.toLong()
     }
-
-
-
-
 
     private fun getAvailableInternalMemorySizeSpace(): Long {
         val path = Environment.getDataDirectory()
@@ -38,19 +31,12 @@ class ExportLocal(private var data: Bitmap) : IExport {
         return availableBlocks * blockSize
     }
 
-
-
-
     /**
      * @return a boolean which says if the source is available. In this case it checks if the phone has enough capacities to store the image.
      */
     override fun checkAvailability(): Boolean {
         return getDataSize() < getAvailableInternalMemorySizeSpace()
     }
-
-
-
-
 
     override fun export(information: String?): Boolean {
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
@@ -60,7 +46,7 @@ class ExportLocal(private var data: Bitmap) : IExport {
         } else {
             "barcode_$timeStamp.jpg"
         }
-        val folder = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), folderName)
+        val folder = File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), folderName)
 
         if (!folder.exists()) {
             folder.mkdirs()
@@ -82,5 +68,9 @@ class ExportLocal(private var data: Bitmap) : IExport {
     private fun sanitizeFileName(fileName: String): String {
         // Replace invalid characters in file name with underscores
         return fileName.replace("[^a-zA-Z0-9.-]".toRegex(), "_")
+    }
+
+    private fun getExternalFilesDir(type: String): File? {
+        return Environment.getExternalStoragePublicDirectory(type)
     }
 }

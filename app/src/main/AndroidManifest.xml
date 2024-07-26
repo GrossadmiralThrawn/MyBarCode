@@ -5,8 +5,6 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" />
 
     <application
         android:allowBackup="true"
@@ -17,20 +15,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyBarCode">
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
         <activity
-            android:name=".ShowCodeActivity"
+            android:name="com.mybarcode.ShowCodeActivity"
             android:exported="false" />
         <activity
-            android:name=".CodeExportingActivity"
+            android:name="com.mybarcode.SavedCodesActivity"
             android:exported="false" />
         <activity
-            android:name=".ScanCodeActivity"
+            android:name="com.mybarcode.ScanCodeActivity"
             android:exported="false" />
         <activity
-            android:name=".CreateCodeActivity"
+            android:name="com.mybarcode.CreateCodeActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.mybarcode.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,7 +47,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CaptureAct"
+            android:name="com.mybarcode.CaptureAct"
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme" />
     </application>
