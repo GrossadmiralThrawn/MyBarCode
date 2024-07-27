@@ -23,4 +23,9 @@
     <string name="image_not_found">Bild konnte nicht gefunden werden.</string>
     <string name="share_with">Share with</string>
     <string name="share_via">Teilen über</string>
+    <string name="delete">Löschen</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="secure_delete_command">Soll das Element wirklich gelöscht werden?</string>
+    <string name="volume_up_to_flash_on">Lautstärke erhöhen um Licht zu aktivieren.</string>
 </resources>

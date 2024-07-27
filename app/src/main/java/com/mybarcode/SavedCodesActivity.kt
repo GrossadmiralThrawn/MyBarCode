@@ -66,13 +66,13 @@ class SavedCodesActivity : AppCompatActivity() {
 
             val selectedCode = codeList[position]
             val dialog = AlertDialog.Builder(this)
-                .setTitle("Löschen")
-                .setMessage("Soll das Element wirklich gelöscht werden?")
-                .setPositiveButton("Ja") { _, _ ->
+                .setTitle(getString(R.string.delete))
+                .setMessage(getString(R.string.secure_delete_command))
+                .setPositiveButton(getString(R.string.yes)) { _, _ ->
                     importData.deleteCode(codeList[position])
                     availableCodes(importData) // Aktualisiere die Liste nach dem Löschen des Codes
                 }
-                .setNegativeButton("Nein", null)
+                .setNegativeButton(getString(R.string.no), null)
                 .show()
 
             true

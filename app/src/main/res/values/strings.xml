@@ -24,4 +24,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="share_with">Share with</string>
     <string name="share_via">Share via</string>
+    <string name="delete">Delete</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="secure_delete_command">Should the element really be deleted?</string>
+    <string name="volume_up_to_flash_on">Volume up to flash on.</string>
 </resources>

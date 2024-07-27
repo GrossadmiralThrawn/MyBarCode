@@ -101,7 +101,7 @@ class ShowCodeActivity : AppCompatActivity() {
             saveCode(data, saveCode, information)
             Toast.makeText(this, getString(R.string.save_successfully), Toast.LENGTH_SHORT).show()
         } ?: run {
-            Toast.makeText(this, "Fehler beim Abrufen der Bitmap", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.save_unsuccessfully), Toast.LENGTH_SHORT).show()
         }
         Toast.makeText(this, getString(R.string.save_successfully), Toast.LENGTH_SHORT).show()
     }

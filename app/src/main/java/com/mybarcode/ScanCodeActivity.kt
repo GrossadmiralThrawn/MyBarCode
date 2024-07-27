@@ -50,7 +50,7 @@ class ScanCodeActivity : AppCompatActivity() {
 
         fun scanCode() {
             val scanOptions = ScanOptions()
-            scanOptions.setPrompt("Volume up to flash on.")
+            scanOptions.setPrompt(getString(R.string.volume_up_to_flash_on))
             scanOptions.setOrientationLocked(true)
             scanOptions.setBeepEnabled(false)
             scanOptions.setCaptureActivity(CaptureAct::class.java)
