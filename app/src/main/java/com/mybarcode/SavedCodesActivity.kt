@@ -44,41 +44,38 @@ class SavedCodesActivity : AppCompatActivity() {
         val listAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, codeList)
         listView.adapter = listAdapter
 
-        var lastClickTime = 0L
 
         listView.setOnItemClickListener { _, _, position, _ ->
-            val currentTime = System.currentTimeMillis()
+            val selectedCode = codeList[position]
+            val bitmap = importData.importCode(selectedCode)
 
-            // Prüfe, ob der Benutzer innerhalb von 2 Sekunden geklickt hat (und nicht nur auf die Liste geblättert)
-            if (currentTime - lastClickTime > 1999) {
-                val dialog = AlertDialog.Builder(this)
-                    .setTitle("Löschen")
-                    .setMessage("Soll das Element wirklich gelöscht werden?")
-                    .setPositiveButton("Ja") { _, _ ->
-                        // Hier kannst du den Code löschen
-                        importData.deleteCode(codeList[position])
-                        availableCodes(importData) // Aktualisiere die Liste nach dem Löschen des Codes
-                    }
-                    .setNegativeButton("Nein", null)
-                    .show()
+            if (bitmap != null) {
+                val dialog = BitmapDialogFragment.newInstance(bitmap)
+                dialog.show(supportFragmentManager, "BitmapDialogFragment")
             } else {
-                val selectedCode = codeList[position]
-                val bitmap = importData.importCode(selectedCode)
-
-                if (bitmap != null) {
-                    val dialog = BitmapDialogFragment.newInstance(bitmap)
-                    dialog.show(supportFragmentManager, "BitmapDialogFragment")
-                } else {
-                    Toast.makeText(
-                        this,
-                        getString(R.string.image_not_found),
+                Toast.makeText(
+                    this,
+                    getString(R.string.image_not_found),
                         Toast.LENGTH_SHORT
-                    ).show()
-                }
+                ).show()
             }
+        }
 
-            // Zeitpunkt des aktuellen Klicks
-            lastClickTime = currentTime
+
+        listView.setOnItemLongClickListener { _, _, position, _ ->
+
+            val selectedCode = codeList[position]
+            val dialog = AlertDialog.Builder(this)
+                .setTitle("Löschen")
+                .setMessage("Soll das Element wirklich gelöscht werden?")
+                .setPositiveButton("Ja") { _, _ ->
+                    importData.deleteCode(codeList[position])
+                    availableCodes(importData) // Aktualisiere die Liste nach dem Löschen des Codes
+                }
+                .setNegativeButton("Nein", null)
+                .show()
+
+            true
         }
     }
 }

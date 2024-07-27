@@ -110,6 +110,9 @@ class ShowCodeActivity : AppCompatActivity() {
 
 
     private fun saveCode(data: Bitmap, storeObject: IExport, information: String?): Boolean {
+        val options = arrayOf("Automatic Naming", "Custom Naming")
+        var selectedOption = 0
+
         storeObject.setData(data)
 
 
