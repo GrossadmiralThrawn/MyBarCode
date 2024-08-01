@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
-import com.example.mybarcode.R
 
 class BitmapDialogFragment : DialogFragment() {
     companion object {

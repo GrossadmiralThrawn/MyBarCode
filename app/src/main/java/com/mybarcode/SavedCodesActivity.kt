@@ -8,7 +8,6 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mybarcode.R
 import com.mybarcode.importfolder.IImport
 import com.mybarcode.importfolder.ImportLocal
 

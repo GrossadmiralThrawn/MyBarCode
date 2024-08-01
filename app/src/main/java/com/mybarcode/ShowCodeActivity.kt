@@ -17,7 +17,6 @@ import androidx.core.content.FileProvider
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.mybarcode.R
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.journeyapps.barcodescanner.BarcodeEncoder
@@ -97,13 +96,14 @@ class ShowCodeActivity : AppCompatActivity() {
 
     private fun saveLocally(data: Bitmap?, information: String?) {
         data?.let {
-            saveCode = ExportLocal(it) //Wenn Daten erhalten, dann Übergabe an Funktion
-            saveCode(data, saveCode, information)
-            Toast.makeText(this, getString(R.string.save_successfully), Toast.LENGTH_SHORT).show()
-        } ?: run {
-            Toast.makeText(this, getString(R.string.save_unsuccessfully), Toast.LENGTH_SHORT).show()
-        }
-        Toast.makeText(this, getString(R.string.save_successfully), Toast.LENGTH_SHORT).show()
+            saveCode = ExportLocal(it)
+            val success = saveCode(data, saveCode, information)
+            if (success) {
+                Toast.makeText(this, getString(R.string.save_successfully), Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, getString(R.string.save_unsuccessfully), Toast.LENGTH_SHORT).show()
+            }
+        } ?: Toast.makeText(this, getString(R.string.save_unsuccessfully), Toast.LENGTH_SHORT).show()
     }
 
 

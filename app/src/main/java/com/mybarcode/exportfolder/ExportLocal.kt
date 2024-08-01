@@ -66,8 +66,8 @@ class ExportLocal(private var data: Bitmap) : IExport {
     }
 
     private fun truncatedFileName(fileName: String): String {
-        return if (fileName.length > 190) {
-            fileName.subSequence(0, 199).toString()
+        return if (fileName.length > 90) {
+            fileName.subSequence(0, 89).toString()
         } else {
             fileName
         }
