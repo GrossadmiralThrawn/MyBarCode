@@ -52,7 +52,7 @@ class ExportLocal(private var data: Bitmap) : IExport {
             folder.mkdirs()
         }
 
-        val file = File(folder, fileName)
+        val file = File(folder, truncatedFileName(fileName))
 
         return try {
             FileOutputStream(file).use { out ->
@@ -64,6 +64,17 @@ class ExportLocal(private var data: Bitmap) : IExport {
             false
         }
     }
+
+    private fun truncatedFileName(fileName: String): String {
+        return if (fileName.length > 190) {
+            fileName.subSequence(0, 199).toString()
+        } else {
+            fileName
+        }
+
+    }
+
+
 
     private fun sanitizeFileName(fileName: String): String {
         // Replace invalid characters in file name with underscores
