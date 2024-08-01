@@ -9,16 +9,16 @@
 
     <Button
         android:id="@+id/scanNewCodeButton"
-        android:layout_width="180dp"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="99dp"
-        android:layout_marginTop="520dp"
-        android:layout_marginEnd="99dp"
-        android:layout_marginBottom="156dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="530dp"
+        android:layout_marginEnd="177dp"
+        android:layout_marginBottom="146dp"
         android:autoSizeTextType="uniform"
         android:text="@string/scan_new_code_button"
         app:autoSizeStepGranularity="2sp" />
@@ -73,5 +73,33 @@
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="572dp"
         android:text="@string/tell_information_text_view" />
+
+    <Button
+        android:id="@+id/scannedCodeSaveButton"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="268dp"
+        android:layout_marginTop="424dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="259dp"
+        android:text="@string/save_scanned_code" />
+
+    <Button
+        android:id="@+id/scannedCodeShareButton"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="254dp"
+        android:layout_marginTop="336dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginBottom="339dp"
+        android:text="@string/share_scanned_code" />
 
 </RelativeLayout>

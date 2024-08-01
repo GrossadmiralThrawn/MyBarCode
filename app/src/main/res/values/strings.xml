@@ -29,4 +29,6 @@
     <string name="no">No</string>
     <string name="secure_delete_command">Should the element really be deleted?</string>
     <string name="volume_up_to_flash_on">Volume up to flash on.</string>
+    <string name="save_scanned_code">Save Code</string>
+    <string name="share_scanned_code">Share scanned Code</string>
 </resources>

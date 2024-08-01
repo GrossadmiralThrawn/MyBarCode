@@ -28,4 +28,6 @@
     <string name="no">Nein</string>
     <string name="secure_delete_command">Soll das Element wirklich gelöscht werden?</string>
     <string name="volume_up_to_flash_on">Lautstärke erhöhen um Licht zu aktivieren.</string>
+    <string name="save_scanned_code">Code speichern</string>
+    <string name="share_scanned_code">Teile gescannten Code</string>
 </resources>
