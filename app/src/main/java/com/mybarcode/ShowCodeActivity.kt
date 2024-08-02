@@ -1,8 +1,5 @@
 package com.mybarcode
 
-
-
-
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -25,20 +22,14 @@ import com.mybarcode.exportfolder.IExport
 import java.io.File
 import java.io.FileOutputStream
 
-
-
-
 class ShowCodeActivity : AppCompatActivity() {
-    private lateinit var returnButton:      Button
-    private lateinit var saveButton:        Button
-    private lateinit var shareButton:       Button
-    private lateinit var receivedIntent:    Intent
+    private lateinit var returnButton: Button
+    private lateinit var saveButton: Button
+    private lateinit var shareButton: Button
+    private lateinit var receivedIntent: Intent
     private lateinit var showCodeImageView: ImageView
     private lateinit var saveCode: IExport
-    private          var creationSucceed:   Boolean    = true
-
-
-
+    private var creationSucceed: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,22 +40,17 @@ class ShowCodeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        receivedIntent    = intent
-        returnButton      = findViewById(R.id.returnToPreviousButton)
-        saveButton        = findViewById(R.id.saveButton)
-        shareButton       = findViewById(R.id.shareButton)
+        receivedIntent = intent
+        returnButton = findViewById(R.id.returnToPreviousButton)
+        saveButton = findViewById(R.id.saveButton)
+        shareButton = findViewById(R.id.shareButton)
         showCodeImageView = findViewById(R.id.showCodeImageView)
-        val codeText      = receivedIntent.getStringExtra("codeText")
+        val codeText = receivedIntent.getStringExtra("codeText")
 
-
-
-        when (receivedIntent.getStringExtra("codeType")) //Kotlins switch-case-Version
-        {
-            "QR" -> generateQRCode(codeText!!) //Lambdafunktionen, inklusive Fehlerabfrage, falls übergebene Daten == null
+        when (receivedIntent.getStringExtra("codeType")) {
+            "QR" -> generateQRCode(codeText!!)
             "Bar" -> generateBarcode(codeText!!)
         }
-
-
 
         saveButton.setOnClickListener {
             val options = arrayOf(getString(R.string.save_location_local))
@@ -75,30 +61,25 @@ class ShowCodeActivity : AppCompatActivity() {
                     when (which) {
                         0 -> saveLocally(showCodeImageView.drawable?.toBitmap(), codeText)
                     }
-                }.setNegativeButton(getString(R.string.quit)) { dialog, _ ->
+                }
+                .setNegativeButton(getString(R.string.quit)) { dialog, _ ->
                     dialog.dismiss()
-                }.show()
+                }
+                .show()
         }
 
-
-
-        shareButton.setOnClickListener{
+        shareButton.setOnClickListener {
             shareImage()
         }
-
-
 
         returnButton.setOnClickListener {
             finish()
         }
     }
 
-
-
-
     private fun saveLocally(data: Bitmap?, information: String?) {
         data?.let {
-            saveCode = ExportLocal(it)
+            saveCode = ExportLocal(it, this) // Pass 'this' as the context
             val success = saveCode(data, saveCode, information)
             if (success) {
                 Toast.makeText(this, getString(R.string.save_successfully), Toast.LENGTH_SHORT).show()
@@ -108,32 +89,20 @@ class ShowCodeActivity : AppCompatActivity() {
         } ?: Toast.makeText(this, getString(R.string.save_unsuccessfully), Toast.LENGTH_SHORT).show()
     }
 
-
-
-
     private fun saveCode(data: Bitmap, storeObject: IExport, information: String?): Boolean {
         val options = arrayOf("Automatic Naming", "Custom Naming")
         var selectedOption = 0
 
         storeObject.setData(data)
 
-
-
-        if (storeObject.checkAvailability())
-        {
-            if(storeObject.export(information))
-            {
+        if (storeObject.checkAvailability()) {
+            if (storeObject.export(information)) {
                 return true
             }
         }
 
-
-
         return false
     }
-
-
-
 
     private fun generateQRCode(data: String) {
         val barcodeEncoder = BarcodeEncoder()
@@ -146,9 +115,6 @@ class ShowCodeActivity : AppCompatActivity() {
         }
     }
 
-
-
-
     private fun generateBarcode(data: String) {
         val barcodeEncoder = BarcodeEncoder()
         try {
@@ -159,9 +125,6 @@ class ShowCodeActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
-
-
-
 
     private fun shareImage() {
         val bitmap = showCodeImageView.drawable?.toBitmap()
@@ -196,8 +159,6 @@ class ShowCodeActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-        } else {
-            return
         }
     }
 }
