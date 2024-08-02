@@ -26,6 +26,8 @@ import java.io.File
 import java.io.FileOutputStream
 
 
+
+
 class ShowCodeActivity : AppCompatActivity() {
     private lateinit var returnButton:      Button
     private lateinit var saveButton:        Button
@@ -136,7 +138,7 @@ class ShowCodeActivity : AppCompatActivity() {
     private fun generateQRCode(data: String) {
         val barcodeEncoder = BarcodeEncoder()
         try {
-            val bitmap = barcodeEncoder.encodeBitmap(data, BarcodeFormat.QR_CODE, 400, 400)
+            val bitmap = barcodeEncoder.encodeBitmap(data, BarcodeFormat.QR_CODE, 600, 400)
             showCodeImageView.setImageBitmap(bitmap)
             creationSucceed = true
         } catch (e: WriterException) {
@@ -150,7 +152,7 @@ class ShowCodeActivity : AppCompatActivity() {
     private fun generateBarcode(data: String) {
         val barcodeEncoder = BarcodeEncoder()
         try {
-            val bitmap = barcodeEncoder.encodeBitmap(data, BarcodeFormat.CODE_128, 400, 200)
+            val bitmap = barcodeEncoder.encodeBitmap(data, BarcodeFormat.CODE_128, 800, 400)
             showCodeImageView.setImageBitmap(bitmap)
             creationSucceed = true
         } catch (e: WriterException) {

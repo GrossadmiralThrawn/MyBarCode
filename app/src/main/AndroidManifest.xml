@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-<uses-feature
+
+    <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
 
@@ -15,6 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyBarCode">
+        <activity
+            android:name=".ShareReadCodeActivity"
+            android:exported="false" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -26,19 +31,19 @@
         </provider>
 
         <activity
-            android:name="com.mybarcode.ShowCodeActivity"
+            android:name=".ShowCodeActivity"
             android:exported="false" />
         <activity
-            android:name="com.mybarcode.SavedCodesActivity"
+            android:name=".SavedCodesActivity"
             android:exported="false" />
         <activity
-            android:name="com.mybarcode.ScanCodeActivity"
+            android:name=".ScanCodeActivity"
             android:exported="false" />
         <activity
-            android:name="com.mybarcode.CreateCodeActivity"
+            android:name=".CreateCodeActivity"
             android:exported="false" />
         <activity
-            android:name="com.mybarcode.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,7 +52,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.mybarcode.CaptureAct"
+            android:name=".CaptureAct"
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme" />
     </application>

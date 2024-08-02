@@ -4,7 +4,7 @@
     <string name="create_code_button">Create code</string>
     <string name="read_code_button">Scan code</string>
     <string name="create_qr_code_button">Create QR-code</string>
-    <string name="create_bar_code_button">create barcode</string>
+    <string name="create_bar_code_button">Create barcode</string>
     <string name="exporting_codes_button">Saved codes</string>
     <string name="type_in_request_text_view">Please type in some data.</string>
     <string name="scan_new_code_button">Scan code</string>
@@ -31,4 +31,6 @@
     <string name="volume_up_to_flash_on">Volume up to flash on.</string>
     <string name="save_scanned_code">Save Code</string>
     <string name="share_scanned_code">Share scanned Code</string>
+    <string name="share_as_QR">Share as QR-code</string>
+    <string name="share_as_bar">Share as bar-code</string>
 </resources>

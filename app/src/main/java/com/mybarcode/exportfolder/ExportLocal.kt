@@ -14,14 +14,23 @@ import java.util.Date
 import java.util.Locale
 
 
+
+
+
 class ExportLocal(private var data: Bitmap) : IExport {
     override fun setData(newData: Bitmap) {
         data = newData
     }
 
+
+
+
     private fun getDataSize(): Long {
         return data.byteCount.toLong()
     }
+
+
+
 
     private fun getAvailableInternalMemorySizeSpace(): Long {
         val path = Environment.getDataDirectory()
@@ -30,6 +39,9 @@ class ExportLocal(private var data: Bitmap) : IExport {
         val availableBlocks = stat.availableBlocksLong
         return availableBlocks * blockSize
     }
+
+
+
 
     /**
      * @return a boolean which says if the source is available. In this case it checks if the phone has enough capacities to store the image.
@@ -56,7 +68,7 @@ class ExportLocal(private var data: Bitmap) : IExport {
 
         return try {
             FileOutputStream(file).use { out ->
-                data.compress(Bitmap.CompressFormat.JPEG, 100, out)
+                data.compress(Bitmap.CompressFormat.JPEG, 1000000, out)
             }
             true
         } catch (e: IOException) {

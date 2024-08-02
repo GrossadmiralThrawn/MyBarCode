@@ -5,6 +5,7 @@ package com.mybarcode
 
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
@@ -16,11 +17,13 @@ import com.journeyapps.barcodescanner.ScanOptions
 
 
 class ScanCodeActivity : AppCompatActivity() {
-    private lateinit var resultString:   String
-    private lateinit var scanButton:     Button
-    private lateinit var backButton:     Button
-    private lateinit var resultTextView: TextView
-    private var          barLauncher              = registerForActivityResult(
+    private lateinit var readCode:               Bitmap
+    private lateinit var resultString:           String
+    private lateinit var scanButton:             Button
+    private lateinit var backButton:             Button
+    private lateinit var resultTextView:         TextView
+    private lateinit var shareScannedCodeButton: Button
+    private var          barLauncher                  = registerForActivityResult(
         ScanContract()) { result: ScanIntentResult ->
         if (result.contents != null) {
             resultString = result.contents
@@ -36,15 +39,23 @@ class ScanCodeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_scan_code)
 
 
-        resultTextView = findViewById(R.id.scannedResultTextView)
-        backButton = findViewById(R.id.returnButton)
-        scanButton = findViewById(R.id.scanNewCodeButton)
-
+        resultTextView         = findViewById(R.id.scannedResultTextView)
+        backButton             = findViewById(R.id.returnButton)
+        scanButton             = findViewById(R.id.scanNewCodeButton)
+        shareScannedCodeButton = findViewById(R.id.scannedCodeShareButton)
 
 
         backButton.setOnClickListener {
             finish()
         }
+
+        shareScannedCodeButton.setOnClickListener{
+            val intent = Intent(this, ShareReadCodeActivity::class.java)
+            intent.putExtra("EXTRA_TEXT", resultTextView.text.toString())
+            startActivity(intent)
+        }
+
+
 
 
         fun scanCode() {
@@ -55,6 +66,9 @@ class ScanCodeActivity : AppCompatActivity() {
             scanOptions.setCaptureActivity(CaptureAct::class.java)
             barLauncher.launch(scanOptions)
         }
+
+
+
 
         scanButton.setOnClickListener {
             scanCode()
