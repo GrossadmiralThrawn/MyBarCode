@@ -18,9 +18,15 @@ class ExportLocal(private var data: Bitmap, private val context: Context) : IExp
         data = newData
     }
 
+
+
+
     private fun getDataSize(): Long {
         return data.byteCount.toLong()
     }
+
+
+
 
     private fun getAvailableInternalMemorySizeSpace(): Long {
         val path = Environment.getDataDirectory()
@@ -30,12 +36,18 @@ class ExportLocal(private var data: Bitmap, private val context: Context) : IExp
         return availableBlocks * blockSize
     }
 
+
+
+
     /**
      * @return a boolean which says if the source is available. In this case it checks if the phone has enough capacities to store the image.
      */
     override fun checkAvailability(): Boolean {
         return getDataSize() < getAvailableInternalMemorySizeSpace()
     }
+
+
+
 
     override fun export(information: String?): Boolean {
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
@@ -68,7 +80,10 @@ class ExportLocal(private var data: Bitmap, private val context: Context) : IExp
         } ?: false
     }
 
-    private fun sanitizeFileName(fileName: String): String {
+
+
+
+    private inline fun sanitizeFileName(fileName: String): String {
         // Replace invalid characters in file name with underscores
         return fileName.replace("[^a-zA-Z0-9.-]".toRegex(), "_")
     }

@@ -1,13 +1,19 @@
 package com.mybarcode.importfolder
 
+
+
+
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Environment
 import android.util.Log
 import java.io.File
 
+
+
+
 class ImportLocal: IImport {
-    override fun getData(): List<String> {
+    override inline fun getData(): List<String> {
         val folderName = "MyBarcodeData"
         val folder = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), folderName)
         val codeList = mutableListOf<String>()
@@ -28,13 +34,17 @@ class ImportLocal: IImport {
 
 
 
-    override fun checkAvailability(): Boolean {
+
+    override inline fun checkAvailability(): Boolean {
         val folderName = "MyBarcodeData"
         val folder = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), folderName)
         return folder.exists() && folder.isDirectory
     }
 
-    override fun importCode(fileName: String): Bitmap? {
+
+
+
+    override inline fun importCode(fileName: String): Bitmap? {
         val folderName = "MyBarcodeData"
         val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "$folderName/$fileName.jpg")
         return if (file.exists()) {
