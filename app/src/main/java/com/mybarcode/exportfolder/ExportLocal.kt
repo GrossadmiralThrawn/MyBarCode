@@ -1,5 +1,8 @@
 package com.mybarcode.exportfolder
 
+
+
+
 import android.content.ContentResolver
 import android.content.ContentValues
 import android.content.Context
@@ -12,8 +15,10 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class ExportLocal(private var data: Bitmap, private val context: Context) : IExport {
 
+
+
+class ExportLocal(private var data: Bitmap, private val context: Context) : IExport {
     override fun setData(newData: Bitmap) {
         data = newData
     }
@@ -28,7 +33,11 @@ class ExportLocal(private var data: Bitmap, private val context: Context) : IExp
 
 
 
-    private fun getAvailableInternalMemorySizeSpace(): Long {
+    /**
+     * This function is a private helper function for "checkAvailability" to get the
+     * size of free disk space in byte
+     */
+    private inline fun getAvailableInternalMemorySizeSpace(): Long {
         val path = Environment.getDataDirectory()
         val stat = StatFs(path.path)
         val blockSize = stat.blockSizeLong
@@ -49,6 +58,11 @@ class ExportLocal(private var data: Bitmap, private val context: Context) : IExp
 
 
 
+    /**
+     * @param information is a parameter which contains a filename which wil be sanitized
+     * @return returns a boolean, which gibes feedback about the (un-) successful saving
+     *         of the qr-code
+     */
     override fun export(information: String?): Boolean {
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val fileName = if (!information.isNullOrEmpty()) {
@@ -57,7 +71,7 @@ class ExportLocal(private var data: Bitmap, private val context: Context) : IExp
             "barcode_$timeStamp.jpg"
         }
 
-        // Use MediaStore to save the image
+        //Use MediaStore to save the image
         val resolver: ContentResolver = context.contentResolver
         val contentValues = ContentValues().apply {
             put(MediaStore.Images.Media.DISPLAY_NAME, fileName)
