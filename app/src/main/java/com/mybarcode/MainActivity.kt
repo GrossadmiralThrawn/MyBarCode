@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         exportedCodes = findViewById(R.id.exportedCodes)
 
 
+
         val createIntent = Intent(this, CreateCodeActivity::class.java)
         val scanIntent = Intent(this, ScanCodeActivity::class.java)
         val exportedIntent = Intent(this, SavedCodesActivity::class.java)

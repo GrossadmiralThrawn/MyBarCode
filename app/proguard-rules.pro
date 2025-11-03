@@ -19,3 +19,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+# Schütze alle Klassen im Ktor Mock Engine Paket
+-keep class io.ktor.client.engine.mock.** { *; }
+
+# Weitere existierende Regeln können hier hinzugefügt werden
